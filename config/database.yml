@@ -81,5 +81,4 @@ test:
 production:
   <<: *default
   database: ezpub_production
-  username: ezpub
   password: <%= ENV['EZPUB_DATABASE_PASSWORD'] %>

@@ -9,7 +9,7 @@
   <tbody>
     <% @pages.each do |page| %>
       <tr>
-        <td><%= sanitize(strip_links(page.force_encoding('UTF-8'))) %></td>
+        <td><%= sanitize(strip_links(page)) %></td>
       </tr>
     <% end %>
   </tbody>

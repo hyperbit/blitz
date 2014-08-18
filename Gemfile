@@ -40,3 +40,8 @@ gem 'spring',        group: :development
 
 # Heroku gems
 gem 'rails_12factor', group: :production
+
+gem 'epub-parser'
+
+gem 'carrierwave', '~> 0.9'
+gem 'bootstrap-sass', '~> 2.3.2'

@@ -19,7 +19,7 @@
     <% @ebooks.each do |ebook| %>
       <tr>
         <td><%= ebook.title %></td>
-        <td><%= link_to "Download Ebook", ebook.attachment_url %></td>
+        <td><%= link_to "View Ebook", ebook_path(ebook) %></td>
         <td><%= button_to "Delete",  ebook, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{ebook.title}?" %></td>
       </tr>
       <!--<% ebook.pages.each do |page| %>

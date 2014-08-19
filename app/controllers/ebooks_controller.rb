@@ -3,6 +3,11 @@ class EbooksController < ApplicationController
   	@ebooks = Ebook.all
   end
 
+  def show
+    @ebook = Ebook.find(params[:id])
+    render 'show'
+  end
+
   def new
   	@ebook = Ebook.new
   end

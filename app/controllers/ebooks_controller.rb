@@ -5,6 +5,7 @@ class EbooksController < ApplicationController
 
   def show
     @ebook = Ebook.find(params[:id])
+    @pages = @ebook.pages
     render 'show'
   end
 

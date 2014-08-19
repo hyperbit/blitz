@@ -22,9 +22,9 @@
         <td><%= link_to "Download Ebook", ebook.attachment_url %></td>
         <td><%= button_to "Delete",  ebook, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{ebook.title}?" %></td>
       </tr>
-      <% ebook.pages.each do |page| %>
+      <!--<% ebook.pages.each do |page| %>
       	<%= sanitize(strip_links(page.content)) %>
-      <% end %>
+      <% end %>-->
     <% end %>
   </tbody>
 </table>

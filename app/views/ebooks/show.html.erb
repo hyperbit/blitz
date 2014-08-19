@@ -1,1 +1,9 @@
-<%= render @ebook.pages %>
+<div class="row">
+	<div align="middle">
+		<%= will_paginate @pages %>
+		<textarea type="text-field" style="width:500px;height:250px;">
+			<%= render @pages %>
+		</textarea>
+		<%= will_paginate @pages %>
+	</div>
+</div>

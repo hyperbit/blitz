@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head lang="en">
   <title>Ezpub</title>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -34,16 +34,68 @@
 	<div class="row">
 		<div align="middle">
 			<%= will_paginate @pages %>
-				<div id="redicle" data-role="spritzer" align="middle"></div>
+				<div id="spritzer" align="middle"></div>
 				<br />
-				<textarea style="width:350px;height:150px;">
+				<button class="btn btn-success" id="startSpritz" type="submit">Spritz!</button>
+				<br />
+				<textarea id="inputText" style="width:350px;height:150px;">
 				<%= render @pages %>
 				</textarea>
+				<br />
 			<%= will_paginate @pages %>
 		</div>
 	</div>
 
 
+	<script type="text/javascript">
+		(function() {
+			var spritzController = null;
+
+			var onSpritzifySuccess = function(spritzText) {
+				spritzController.startSpritzing(spritzText);
+			};
+
+			var onSpritzifyError = function(error) {
+				alert("Unable to Spritz: " + error.message);
+			};
+
+			function onStartSpritzClick(event) {
+				var text = $('#inputText').val();
+				var locale = "en_us;";
+
+				// Send to SpritzEngine to translate
+				SpritzClient.spritzify(text, locale, onSpritzifySuccess, onSpritzifyError);
+			};
+
+			// Customized options
+			var customOptions = {
+		            placeholderText:    { startText: '' },
+					redicleWidth: 	    434,	// Specify Redicle width
+					redicleHeight: 	    76		// Specify Redicle height
+			};
+
+			var init = function() {
+				$("#startSpritz").on("click", onStartSpritzClick);
+
+				// Construct a SpritzController passing the customization options
+				spritzController = new SPRITZ.spritzinc.SpritzerController(customOptions);
+
+				// Attach the controller's container to this page's "spritzer" container
+				spritzController.attach($("#spritzer"));
+
+				var text = $('#inputText').val();
+				var locale = "en_us;";
+
+				// Send to SpritzEngine to translate
+				SpritzClient.spritzify(text, locale, onSpritzifySuccess, onSpritzifyError);
+				};
+
+				$(document).ready(function() {
+					init();
+				});
+
+		})();
+	</script>
 				
 
 </div>

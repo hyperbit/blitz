@@ -4,19 +4,19 @@
   </div>
 <% end %>
 <br />
-<%= link_to "New Ebook", new_ebook_path, class: "btn btn-primary" %>
-<br />
-<br />
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Download Link</th>
-      <th>&nbsp;</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if current_user %>
+<% if current_user %>
+  <%= link_to "New Ebook", new_ebook_path, class: "btn btn-primary" %>
+  <br />
+  <br />
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Download Link</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
       <% @ebooks.each do |ebook| %>
         <tr>
           <td><%= ebook.title %></td>
@@ -24,6 +24,6 @@
           <td><%= button_to "Delete",  ebook, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{ebook.title}?" %></td>
         </tr>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+<% end %>

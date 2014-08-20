@@ -2,14 +2,24 @@
 <html>
 <head>
   <title>Ezpub</title>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <div class="container" style="padding-top:20px;">
-<%= yield %>
+	  <script type="text/javascript">
+		var SpritzSettings = {
+			clientId: "4524122930975538943",
+			redirectUri: "http://ezpub.herokuapp.com/login_success.html",
+			
+		};
+		console.log("login")
+	</script>
+	<%= yield %>
 </div>
 
 </body>

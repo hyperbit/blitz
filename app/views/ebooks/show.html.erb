@@ -1,13 +1,52 @@
-<%= render "layouts/spritzheader" %>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ezpub</title>
 
-<div class="row">
-	<div align="middle">
-		<%= will_paginate @pages %>
-		<textarea type="text-field" style="width:500px;height:250px;">
-			<%= render @pages %>
-		</textarea>
-		<%= will_paginate @pages %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	
+  <%= csrf_meta_tags %>
+
+
+  <script type="text/javascript">
+		var SpritzSettings = {
+			clientId: "4524122930975538943",
+			redirectUri: "http://ezpub.herokuapp.com/login_success.html",
+			
+		};
+		console.log("login")
+	</script>
+	<script type="text/javascript" src="//sdk.spritzinc.com/js/1.2/js/spritz.min.js"></script>
+</head>
+<body>
+
+<div class="container" style="padding-top:20px;">
+
+	<script type="text/javascript">
+		if(!window.location.hash) {
+		    window.location = window.location + '#spritz';
+		    window.location.reload();
+		}
+	</script>
+
+
+	<div class="row">
+		<div align="middle">
+			<%= will_paginate @pages %>
+				<div id="redicle" data-role="spritzer" align="middle"></div>
+				<br />
+				<textarea style="width:350px;height:150px;">
+				<%= render @pages %>
+				</textarea>
+			<%= will_paginate @pages %>
+		</div>
 	</div>
+
+
+				
+
 </div>
 
-<%= render "layouts/spritzfooter" %>
+</body>
+</html>

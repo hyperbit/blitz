@@ -14,8 +14,12 @@ class EbooksController < ApplicationController
   end
 
   def create
-  	@ebook = Ebook.new(ebook_params)
+    @current_user = current_user
+    puts "***********"
+    puts @current_user
+  	@ebook = @current_user.ebooks.create(ebook_params)
     if @ebook.save
+      
     	book = EPUB::Parser.parse(@ebook.attachment.path)
     	book.each_page_on_spine do |pg|
     		p = {}

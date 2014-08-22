@@ -19,8 +19,6 @@ class EbooksController < ApplicationController
 
   def create
     @current_user = current_user
-    puts "***********"
-    puts @current_user
   	@ebook = @current_user.ebooks.create(ebook_params)
     if @ebook.save
 

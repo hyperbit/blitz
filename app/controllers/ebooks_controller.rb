@@ -9,7 +9,7 @@ class EbooksController < ApplicationController
 
   def show
     @ebook = Ebook.find(params[:id])
-    @pages = @ebook.pages.paginate(:page => params[:page], :per_page => 1)
+    @pages = @ebook.pages.order("created_at ASC").paginate(:page => params[:page], :per_page => 1)
     render 'show', :layout => false
   end
 

@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
-    <title>Cover Template for Bootstrap</title>
+    <title>EZPub</title>
 
     <!-- Bootstrap core CSS -->
     <link href="cover/bootstrap.css" rel="stylesheet">
@@ -38,30 +38,19 @@
 
         <div class="cover-container">
 
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand">Cover</h3>
-              <ul class="nav masthead-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Features</a></li>
-                <li><a href="#">Contact</a></li>
-              </ul>
-            </div>
-          </div>
-
           <div class="inner cover">
-            <h1 class="cover-heading">Cover your page.</h1>
-            <p class="lead">Cover is a one-page template for building 
-simple and beautiful home pages. Download, edit the text, and add your 
-own fullscreen background photo to make it your own.</p>
+            <h1 class="cover-heading">EZPub<br/><h3>PoweredbySpritz™</h3></h1>
+            <p class="lead">EZPub is an web browser platform that allows you to upload .epub files to be read with Spritz reading technology</p>
             <p class="lead">
               <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in", class: "btn btn-lg btn-default" %>
+              <br />
+              <a id="why" data-toggle="tooltip" data-placement="top" title="We use Facebook Authentication as a simple way to keep track of the books you upload." style="font-size:0.5em;">why?</a>
             </p>
           </div>
 
           <div class="mastfoot">
             <div class="inner">
-              <p>Cover template for <a href="http://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+              <p>Fork on <a href="https://github.com/hyperbit/ezpub">GitHub</a>, by <a href="https://github.com/hyperbit">hyperbit</a>.</p>
             </div>
           </div>
 
@@ -77,6 +66,9 @@ own fullscreen background photo to make it your own.</p>
     <script src="cover/jquery.js"></script>
     <script src="cover/bootstrap.js"></script>
     <script src="cover/docs.js"></script>
+    <script>
+      $('#why').tooltip()
+    </script>
   
 
 </body></html>

@@ -19,10 +19,10 @@ class EbooksController < ApplicationController
 
   def create
     @current_user = current_user
+    book = EPUB::Parser.parse(params[:ebook][:attachment].path)
+    params[:ebook][:title] = book.metadata.title
   	@ebook = @current_user.ebooks.create(ebook_params)
     if @ebook.save
-
-    	book = EPUB::Parser.parse(@ebook.attachment.path)
     	book.each_page_on_spine do |pg|
     		p = {}
     		p[:content] = pg.read.squish.force_encoding('UTF-8')

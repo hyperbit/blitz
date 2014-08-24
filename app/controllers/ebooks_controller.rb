@@ -24,8 +24,10 @@ class EbooksController < ApplicationController
   	@ebook = @current_user.ebooks.create(ebook_params)
     if @ebook.save
     	book.each_page_on_spine do |pg|
+        doc = Nokogiri::HTML(pg.read.squish.force_encoding('UTF-8'))
+        body = doc.xpath('//body')
     		p = {}
-    		p[:content] = pg.read.squish.force_encoding('UTF-8')
+    		p[:content] = body.to_s
     		@page = @ebook.pages.create(p)
     	end
       redirect_to ebooks_path, notice: "The ebook #{@ebook.title} has been uploaded."

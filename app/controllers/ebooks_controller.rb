@@ -45,8 +45,11 @@ class EbooksController < ApplicationController
   end
 
   def destroy
+    @current_user = current_user
   	@ebook = Ebook.find(params[:id])
-  	@ebook.destroy
+    dir = "public/uploads/ebook/#{@current_user.name}/#{@ebook.title}"
+    FileUtils.rm_rf(dir)
+    @ebook.destroy
   	redirect_to ebooks_path, notice: "Ebook deleted!"
   end
 	private

@@ -23,9 +23,17 @@ class EbooksController < ApplicationController
     params[:ebook][:title] = book.metadata.title
   	@ebook = @current_user.ebooks.create(ebook_params)
     if @ebook.save
+      destination = "public/uploads/ebook/#{@current_user.name}/#{@ebook.title.tr(' ','_')}"
+      puts "************"
+      puts @ebook.attachment.path
+      puts destination
+      unzip(@ebook.attachment.path, destination)
+      puts "************"
+
     	book.each_page_on_spine do |pg|
         doc = Nokogiri::HTML(pg.read.squish.force_encoding('UTF-8'))
         body = doc.xpath('//body')
+
     		p = {}
     		p[:content] = body.to_s
     		@page = @ebook.pages.create(p)

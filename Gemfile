@@ -43,8 +43,8 @@ gem 'rails_12factor', group: :production
 
 gem 'epub-parser'
 gem 'nokogiri', '~> 1.6.3.1'
-gem 'rubyzip', '>= 1.0.0' # will load new rubyzip version
-gem 'zip'
+#gem 'rubyzip', '>= 1.0.0' # will load new rubyzip version
+gem 'zipruby'
 
 gem 'carrierwave', '~> 0.9'
 gem 'bootstrap-sass', '~> 2.3.2'

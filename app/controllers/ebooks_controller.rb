@@ -23,7 +23,7 @@ class EbooksController < ApplicationController
     params[:ebook][:title] = book.metadata.title
   	@ebook = @current_user.ebooks.create(ebook_params)
     if @ebook.save
-      destination = "public/uploads/ebook/#{@current_user.name}/#{@ebook.title.tr(' ','_')}"
+      destination = "public/uploads/ebook/#{@current_user.name}/#{@ebook.title}"
       puts "************"
       puts @ebook.attachment.path
       puts destination

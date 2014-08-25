@@ -23,7 +23,7 @@ class EbooksController < ApplicationController
     params[:ebook][:title] = book.metadata.title
   	@ebook = @current_user.ebooks.create(ebook_params)
     if @ebook.save
-      destination = "public/uploads/ebook/#{@current_user.name}/#{@ebook.title}"
+      destination = "public/uploads/ebook/#{@current_user.name.tr(' ', '_')}/#{@ebook.title.tr(' ', '_')}"
       puts "************"
       puts @ebook.attachment.path
       puts destination
@@ -37,6 +37,7 @@ class EbooksController < ApplicationController
         puts "************"
     		p = {}
     		p[:content] = body.to_s
+        path.slice! "public/"
         p[:path] = path
     		@page = @ebook.pages.create(p)
     	end
@@ -49,7 +50,7 @@ class EbooksController < ApplicationController
   def destroy
     @current_user = current_user
   	@ebook = Ebook.find(params[:id])
-    dir = "public/uploads/ebook/#{@current_user.name}/#{@ebook.title}"
+    dir = "public/uploads/ebook/#{@current_user.name.tr(' ', '_')}/#{@ebook.title.tr(' ', '_')}"
     FileUtils.rm_rf(dir)
     @ebook.destroy
   	redirect_to ebooks_path, notice: "Ebook deleted!"

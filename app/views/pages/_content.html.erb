@@ -1,1 +1,1 @@
-<%= strip_tags(sanitize(strip_links(page.content))) %>
+<%= simple_format(strip_links(File.read page.path)) %>

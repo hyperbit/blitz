@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140820081707) do
+ActiveRecord::Schema.define(version: 20140825081825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20140820081707) do
     t.integer  "ebook_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "path"
   end
 
   add_index "pages", ["ebook_id"], name: "index_pages_on_ebook_id", using: :btree

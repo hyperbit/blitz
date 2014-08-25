@@ -37,6 +37,7 @@ class EbooksController < ApplicationController
         puts "************"
     		p = {}
     		p[:content] = body.to_s
+        p[:path] = path
     		@page = @ebook.pages.create(p)
     	end
       redirect_to ebooks_path, notice: "The ebook #{@ebook.title} has been uploaded."

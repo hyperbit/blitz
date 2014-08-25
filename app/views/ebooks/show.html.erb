@@ -43,8 +43,11 @@
 				<br />
 				<br />
 				<textarea id="inputText" style="width:350px;height:150px;">
-				<%= render @pages %>
+					<%= render @pages %>
 				</textarea>
+				<p>
+					<%= render :partial => 'pages/content', :collection => @pages, :as => :page %>
+				</p>
 			<%= will_paginate @pages %>
 		</div>
 	</div>

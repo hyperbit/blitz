@@ -23,11 +23,22 @@ class EbooksController < ApplicationController
     params[:ebook][:title] = book.metadata.title
   	@ebook = @current_user.ebooks.create(ebook_params)
     if @ebook.save
+      destination = "public/uploads/ebook/#{@current_user.name.tr(' ', '_')}/#{@ebook.title.tr(' ', '_')}"
+      puts "************"
+      puts @ebook.attachment.path
+      puts destination
+      unzip(@ebook.attachment.path, destination)
+      puts "************"
+
     	book.each_page_on_spine do |pg|
         doc = Nokogiri::HTML(pg.read.squish.force_encoding('UTF-8'))
         body = doc.xpath('//body')
+        path = File.join(destination, pg.entry_name)
+        puts "************"
     		p = {}
     		p[:content] = body.to_s
+        path.slice! "public/"
+        p[:path] = path
     		@page = @ebook.pages.create(p)
     	end
       redirect_to ebooks_path, notice: "The ebook #{@ebook.title} has been uploaded."
@@ -37,8 +48,11 @@ class EbooksController < ApplicationController
   end
 
   def destroy
+    @current_user = current_user
   	@ebook = Ebook.find(params[:id])
-  	@ebook.destroy
+    dir = "public/uploads/ebook/#{@current_user.name.tr(' ', '_')}/#{@ebook.title.tr(' ', '_')}"
+    FileUtils.rm_rf(dir)
+    @ebook.destroy
   	redirect_to ebooks_path, notice: "Ebook deleted!"
   end
 	private

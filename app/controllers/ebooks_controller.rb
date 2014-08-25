@@ -33,7 +33,8 @@ class EbooksController < ApplicationController
     	book.each_page_on_spine do |pg|
         doc = Nokogiri::HTML(pg.read.squish.force_encoding('UTF-8'))
         body = doc.xpath('//body')
-
+        path = File.join(destination, pg.entry_name)
+        puts "************"
     		p = {}
     		p[:content] = body.to_s
     		@page = @ebook.pages.create(p)

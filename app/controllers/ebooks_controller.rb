@@ -1,6 +1,6 @@
 class EbooksController < ApplicationController
   def index
-    Ebook.delete_all(["updated_at < ?", 12.hours.ago])
+    #Ebook.delete_all(["updated_at < ?", 12.hours.ago])
     @ebook = Ebook.all
   end
 
@@ -11,7 +11,7 @@ class EbooksController < ApplicationController
   end
 
   def new
-    Ebook.delete_all(["updated_at < ?", 12.hours.ago])
+    #Ebook.delete_all(["updated_at < ?", 12.hours.ago])
   	@ebook = Ebook.new
   end
 

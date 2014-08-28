@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def unzip (file, destination)
-
 		Zip::Archive.open(file) do |ar|
 		  ar.each do |zf|
 	    	f_path = File.join(destination, zf.name)
@@ -20,7 +19,6 @@ class ApplicationController < ActionController::Base
 		    end
 		  end
 		end
-
 	end
 
   helper_method :unzip

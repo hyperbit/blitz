@@ -1,6 +1,6 @@
 class EbooksController < ApplicationController
   def index
-    #Ebook.delete_all(["updated_at < ?", 12.hours.ago])
+    Ebook.delete_all(["updated_at < ?", 12.hours.ago])
     @ebook = Ebook.all
   end
 
@@ -39,8 +39,8 @@ class EbooksController < ApplicationController
 
   def destroy
   	@ebook = Ebook.find(params[:id])
-    dir = ::Rails.root.join("tmp", book.metadata.title)
-    FileUtils.rm_rf(dir)
+    #dir = ::Rails.root.join("tmp", book.metadata.title)
+    #FileUtils.rm_rf(dir)
     @ebook.destroy
   	redirect_to ebooks_path, notice: "Ebook deleted!"
   end

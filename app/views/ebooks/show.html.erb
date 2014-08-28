@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-  <title>Ezpub</title>
+	<title>Ezpub</title>
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-	
-  <%= csrf_meta_tags %>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
+	<%= csrf_meta_tags %>
 
-  <script type="text/javascript">
+	<script type="text/javascript">
+		if(!window.location.hash) {
+		    window.location = window.location + '#spritz';
+		    window.location.reload();
+		}
+	</script>
+
+	<script type="text/javascript">
 		var SpritzSettings = {
 			clientId: "4524122930975538943",
 			redirectUri: "http://ezpub.herokuapp.com/login_success.html",
@@ -24,14 +30,6 @@
 <div class="container" style="padding-top:20px;">
 
 	<%= link_to "Back", new_ebook_path, class: "btn btn-primary" %>
-
-	<script type="text/javascript">
-		if(!window.location.hash) {
-		    window.location = window.location + '#spritz';
-		    window.location.reload();
-		}
-	</script>
-
 
 	<div class="row">
 		<div align="middle">

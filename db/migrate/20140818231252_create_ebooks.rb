@@ -4,8 +4,6 @@ class CreateEbooks < ActiveRecord::Migration
       t.string :title
       t.string :attachment
 
-	  # this line adds an integer column called `article_id`.
-      t.references :user, index: true
 
       t.timestamps
     end

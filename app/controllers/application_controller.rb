@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def unzip (file, destination)
-
 		Zip::Archive.open(file) do |ar|
 		  ar.each do |zf|
 	    	f_path = File.join(destination, zf.name)
@@ -20,13 +19,7 @@ class ApplicationController < ActionController::Base
 		    end
 		  end
 		end
-
 	end
 
-  
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
-  helper_method :current_user
   helper_method :unzip
 end

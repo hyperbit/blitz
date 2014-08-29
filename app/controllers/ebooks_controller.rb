@@ -16,14 +16,14 @@ class EbooksController < ApplicationController
   end
 
   def create
-    puts "******"
-    puts params[:ebook][:attachment].path.to_s
     book = EPUB::Parser.parse(params[:ebook][:attachment].path)
     params[:ebook][:title] = book.metadata.title
   	@ebook = Ebook.new(ebook_params)
     if @ebook.save
-      Resque.enqueue(EbookLoader, @ebook.id)
-      
+      #Resque.enqueue(EbookLoader, @ebook.id)
+      puts "***********"
+      job_id = EbookLoader.create(:ebook_id => @ebook.id)
+      puts job_id
       redirect_to ebook_path(@ebook)
     else
       render "create"

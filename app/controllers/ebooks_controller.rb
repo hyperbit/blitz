@@ -7,7 +7,13 @@ class EbooksController < ApplicationController
   def show
     @ebook = Ebook.find(params[:id])
     @pages = @ebook.pages.order("created_at ASC").paginate(:page => params[:page], :per_page => 1)
-    render 'show', :layout => false
+    @job_id = params[:job_id]
+    status = Resque::Plugins::Status::Hash.get(params[:job_id]).status
+    if status != "completed"
+      render 'ebook'
+    else
+      render 'show', :layout => false
+    end
   end
 
   def new
@@ -21,10 +27,9 @@ class EbooksController < ApplicationController
   	@ebook = Ebook.new(ebook_params)
     if @ebook.save
       #Resque.enqueue(EbookLoader, @ebook.id)
-      puts "***********"
       job_id = EbookLoader.create(:ebook_id => @ebook.id)
       puts job_id
-      redirect_to ebook_path(@ebook)
+      redirect_to ebook_path(@ebook, :job_id => job_id)
     else
       render "create"
     end

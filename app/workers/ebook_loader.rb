@@ -7,7 +7,10 @@ class EbookLoader
 		destination = "public/uploads/ebooks/#{ebook.title}"
   	unzip(ebook.attachment.path, destination)
 
+  	num = 0
   	book.each_page_on_spine do |pg|
+  		at(num, book.each_page_on_spine.count)
+  		num += 1
       doc = Nokogiri::HTML(pg.read.squish.force_encoding('UTF-8'))
       body = doc.xpath('//body')
       path = File.join(destination, pg.entry_name)

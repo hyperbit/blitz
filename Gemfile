@@ -55,5 +55,6 @@ gem 'will_paginate', '~> 3.0.5'
 gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
 
+gem 'redis'
 gem 'resque'
 gem 'resque-status'

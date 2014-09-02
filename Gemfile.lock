@@ -196,6 +196,7 @@ DEPENDENCIES
   pg
   rails (= 4.1.4)
   rails_12factor
+  redis
   resque
   resque-status
   sass-rails (~> 4.0.3)

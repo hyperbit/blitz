@@ -8,10 +8,44 @@
   </div>
 <% end %>
 
-<div class="well">
-  <%= form_for @ebook, html: { multipart: true } do |f| %>
-    <%= f.label :attachment %>
-    <%= f.file_field :attachment %>
-    <%= f.submit "Save", class: "btn btn-primary" %>
-  <% end %>
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+  <h1>EZPub <small>PoweredbySpritz™</small></h1>
+  <p>EZPub (pronounced <em>easy-pub</em>) is an online tool designed to help you read your eBooks faster, easier, and more effectively by using the power of <strong><a href="http://www.spritzinc.com/">Spritz</a></strong>.</p>
+  <p><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Upload eBook &raquo;</button></p>
 </div>
+
+<div class="row">
+  <div align="middle">
+    <div class="well">
+      
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Select an eBook to read with Spritz</h4>
+      </div>
+      <div class="modal-body">
+        <p style="color:#D95352;" align="middle">
+          <strong>25 MB limit.</strong> Only .epub files allowed. Files deleted daily.
+          <br/>
+          Because eBooks are fairly large in size (>5 MB), it might take a while to upload and render. Also, if your internet connection is slow, the app might timeout. Please be patient, I am working on a method to do this file processing in the background.
+        </p>
+        <%= form_for @ebook, html: { multipart: true } do |f| %>
+          <%= f.file_field :attachment %>
+          <%= f.submit "Upload", class: "btn btn-primary" %>
+        <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+</div>
+

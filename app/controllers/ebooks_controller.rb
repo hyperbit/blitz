@@ -1,17 +1,15 @@
 class EbooksController < ApplicationController
   def index
-    #Ebook.delete_all(["updated_at < ?", 12.hours.ago])
     @ebook = Ebook.all
   end
 
   def show
     @ebook = Ebook.find(params[:id])
     @pages = @ebook.pages.order("created_at ASC").paginate(:page => params[:page], :per_page => 1)
-    render 'show', :layout => false
+    render 'show'
   end
 
   def new
-    #Ebook.delete_all(["updated_at < ?", 12.hours.ago])
   	@ebook = Ebook.new
   end
 
@@ -46,6 +44,17 @@ class EbooksController < ApplicationController
     Ebook.delete_all
   	redirect_to ebooks_path, notice: "Ebook deleted!"
   end
+
+  def about
+    @title = "About"
+    render "about"
+  end
+
+  def contact
+    @title = "Contact"
+    render "contact"
+  end
+
 	private
    	 def ebook_params
     	  params.require(:ebook).permit(:title, :attachment)

@@ -9,7 +9,6 @@
 		var SpritzSettings = {
 			clientId: "4524122930975538943",
 			redirectUri: "http://ezpub.herokuapp.com/login_success.html",
-			
 		};
 	</script>
 	<script type="text/javascript" src="//sdk.spritzinc.com/js/1.2/js/spritz.min.js"></script>
@@ -28,14 +27,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
+      <%= link_to "EZPub", root_path, :class => "navbar-brand" %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "New EZPub", new_ebook_path %></li>
-        <li><a href="#">About</a></li>
+        <li><%= link_to "Upload", new_ebook_path %></li>
+        <li<% if @title == "About" %> class="active" <% end %>><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -46,5 +45,6 @@
 		<%= yield %>
 	</div>
 
+	
 </body>
 </html>

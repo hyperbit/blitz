@@ -50,7 +50,7 @@ gem 'carrierwave', '~> 0.9'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
-gem 'will_paginate', '~> 3.0.5'
+gem 'will_paginate-bootstrap'
 
 # Facebook Auth
 gem 'omniauth'

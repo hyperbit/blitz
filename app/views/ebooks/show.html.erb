@@ -1,22 +1,28 @@
+<div class="row" align="middle">
+	<%= will_paginate @pages, renderer: BootstrapPagination::Rails %>
+</div>
 <div class="row">
-	<div align="middle">
-		<%= will_paginate @pages %>
-			<br />
-			<div id="spritzer" align="middle"></div>
-			<br />
-			<br />
-			<button class="btn btn-success" id="startSpritz" type="submit">EZPub!</button>
-			<br />
-			<br />
-			<textarea id="inputText" style="width:350px;height:150px;">
-				<%= render @pages %>
-			</textarea>
-			<p>
-				<%= render :partial => 'pages/content', :collection => @pages, :as => :page %>
-			</p>
-			<br />
-		<%= will_paginate @pages %>
+	<div class="col-md-6" align="middle">
+		<br />
+		<div id="spritzer" align="middle"></div>
+		<br />
+		<br />
+		<button class="btn btn-success" id="startSpritz" type="submit">EZPub!</button>
+		<br />
+		<br />
+		<textarea id="inputText" style="width:500px;height:250px;">
+			<%= render @pages %>
+		</textarea>
 	</div>
+	<div class="col-md-6">
+		<p>
+			<%= render :partial => 'pages/content', :collection => @pages, :as => :page %>
+		</p>
+		<br />
+	</div>
+</div>
+<div class="row" align="middle">
+	<%= will_paginate @pages, renderer: BootstrapPagination::Rails %>
 </div>
 
 <%= render 'spritz' %>

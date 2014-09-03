@@ -44,6 +44,17 @@ class EbooksController < ApplicationController
     Ebook.delete_all
   	redirect_to ebooks_path, notice: "Ebook deleted!"
   end
+
+  def about
+    @title = "About"
+    render "about"
+  end
+
+  def contact
+    @title = "Contact"
+    render "contact"
+  end
+
 	private
    	 def ebook_params
     	  params.require(:ebook).permit(:title, :attachment)

@@ -7,7 +7,7 @@ An online eBook (.epub) reader, PoweredbySpritz™.
 
 # Overview
 
-![Alt text](http://ezpub.herokuapp.com/assets/screenshot2-dadcda55eaa2c4b9002d7a743520f066.jpg)
+![Alt text](http://ezpub.herokuapp.com/assets/screenshot2-a98c8e607027032b1b814dfa526647be.jpg)
 
 EZPub allows users to upload eBook (.epub) files to be read with Spritz reading technology. The uploaded file contents are parsed and rendered into plain text (left side of screenshot). It is also unzipped and (temporarily) saved to disk to be able to display the actual eBook into view (right side of screenshot). The algorithm is as follows:
 

@@ -21,4 +21,4 @@ Seems like overkill, but each technology does their own part to ultimately rende
 
 # Contributions
 
-Feel free to fork and send some pull requests. Any suggestions for improvements are welcomed, but I am especially looking to add background processes with a progress bar to display to the user.
+Feel free to fork and send some pull requests. Any suggestions for improvements are welcomed, but I am especially looking to add background processes for the file processing, with a progress bar to display to the user in the view.

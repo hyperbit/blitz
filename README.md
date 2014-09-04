@@ -3,6 +3,8 @@ EZPub
 
 An online eBook (.epub) reader, PoweredbySpritz™.
 
+![Alt text](http://ezpub.herokuapp.com/assets/screenshot1-ee0466f2fbda80144381a8bb6a32065f.jpg)
+
 # Overview
 
 ![Alt text](http://ezpub.herokuapp.com/assets/screenshot2-dadcda55eaa2c4b9002d7a743520f066.jpg)

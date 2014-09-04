@@ -14,27 +14,15 @@ class EbooksController < ApplicationController
   end
 
   def create
-    book = EPUB::Parser.parse(params[:ebook][:attachment].path)
+    title = EPUB::Parser.parse(params[:ebook][:attachment].path).metadata.title
     
-    params[:ebook][:title] = book.metadata.title
+    params[:ebook][:title] = title
   	@ebook = Ebook.new(ebook_params)
     if @ebook.save
-      destination = "public/uploads/ebooks/#{@ebook.title}"
-      unzip(@ebook.attachment.path, destination)
-
-    	book.each_page_on_spine do |pg|
-        doc = Nokogiri::HTML(pg.read.squish.force_encoding('UTF-8'))
-        body = doc.xpath('//body')
-        path = File.join(destination, pg.entry_name)
-        path.slice! "public/"
-    		p = {}
-    		p[:content] = body.to_s
-        p[:path] = path
-    		@page = @ebook.pages.create(p)
-    	end
-      redirect_to ebook_path(@ebook)
+        Resque.enqueue(EbookUploader, @ebook.id)
+        redirect_to ebook_path(@ebook)
     else
-      render "create"
+        render "create"
     end
   end
 

@@ -1,3 +1,26 @@
+<%= javascript_tag do %>
+	var pusher = new Pusher('c15372e0b28fbbc25e71');
+	var channel = pusher.subscribe('ebook-uploader');
+
+	pusher.log = function(message) {
+	  if (window.console && window.console.log) {
+	    window.console.log(message);
+	  }
+	};
+
+	$(document).ready(function(){
+		$('.progress').hide();
+	});
+
+	channel.bind('ebook-percent', function(data) {
+		if (data.message != "done") {
+			$('.progress').show()
+			$('.progress-bar').css("width", data.message + "%");
+		} else {
+			location.reload();
+		}
+	});
+<% end %>
 <div id="paginate" class="row" align="middle" data-toggle="tooltip" data-placement="top" title="Browse through different pages!">
 	<%= will_paginate @pages, renderer: BootstrapPagination::Rails %>
 </div>
@@ -15,6 +38,10 @@
 		</textarea>
 	</div>
 	<div id="ebook" class="col-md-6" data-placement="top" title="View contents of the eBook">
+		<div class="progress">
+		  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+		  </div>
+		</div>
 		<p>
 			<%= render :partial => 'pages/content', :collection => @pages, :as => :page %>
 		</p>
@@ -24,6 +51,7 @@
 <div class="row" align="middle">
 	<%= will_paginate @pages, renderer: BootstrapPagination::Rails %>
 </div>
+
 
 <%= render 'spritz' %>
 <script>

@@ -15,7 +15,6 @@ class EbooksController < ApplicationController
 
   def create
     title = EPUB::Parser.parse(params[:ebook][:attachment].path).metadata.title
-    puts "************"
 
     params[:ebook][:title] = title
   	@ebook = Ebook.new(ebook_params)

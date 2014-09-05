@@ -3,6 +3,7 @@ require 'pusher'
 class EbookUploader
 	@queue = :upload_ebook
 	def self.perform(ebook_id, pusher_app_id, pusher_key, pusher_secret)
+		Pusher.trigger('ebook-uploader', 'ebook-percent', {:message => "started"})
 		
 		Pusher.app_id = pusher_app_id
 		Pusher.key = pusher_key

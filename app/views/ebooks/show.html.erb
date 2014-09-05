@@ -8,7 +8,9 @@
 	  }
 	};
 
-	$('.progress').hide()
+	$(document).ready(function(){
+		$('.progress').hide();
+	});
 
 	channel.bind('ebook-percent', function(data) {
 		if (data.message != "done") {

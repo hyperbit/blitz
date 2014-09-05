@@ -7,8 +7,6 @@ class EbookUploader
 		Pusher.key = pusher_key
 		Pusher.secret = pusher_secret
 
-		Pusher.trigger('ebook-uploader', 'ebook-percent', {:message => "started"})
-
 		ebook = Ebook.find(ebook_id)
 		book = EPUB::Parser.parse(ebook.attachment.path)
 		destination = "public/uploads/ebooks/#{ebook.title}"

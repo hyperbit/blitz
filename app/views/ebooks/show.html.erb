@@ -16,8 +16,6 @@
 		if (data.message != "done") {
 			$('.progress').show()
 			$('.progress-bar').css("width", data.message + "%");
-		} else if (data.message == "started") {
-			alert("job started!");
 		} else {
 			location.reload();
 		}

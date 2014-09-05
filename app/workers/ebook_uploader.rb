@@ -29,7 +29,7 @@ class EbookUploader
     		percent = ((num/total) * 100).to_i.to_s
     		Pusher.trigger('ebook-uploader', 'ebook-percent', {:message => percent})
     	end
-    		Pusher.trigger('ebook-uploader', 'ebook-percent', {:message => "done"})
+    	Pusher.trigger('ebook-uploader', 'ebook-percent', {:message => "done"})
 	end
 
 	def self.unzip (file, destination)

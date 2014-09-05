@@ -8,9 +8,15 @@
 	  }
 	};
 
+	$('.progress').hide()
+
 	channel.bind('ebook-percent', function(data) {
-		var percent = data.message + "%";
-		$('.progress-bar').css("width", percent);
+		if (data.message != "done") {
+			$('.progress').show()
+			$('.progress-bar').css("width", data.message + "%");
+		} else {
+			location.reload();
+		}
 	});
 <% end %>
 <div id="paginate" class="row" align="middle" data-toggle="tooltip" data-placement="top" title="Browse through different pages!">

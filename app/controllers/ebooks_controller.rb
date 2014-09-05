@@ -19,7 +19,7 @@ class EbooksController < ApplicationController
     params[:ebook][:title] = title
   	@ebook = Ebook.new(ebook_params)
     if @ebook.save
-        Resque.enqueue(EbookUploader, @ebook.id)
+        Resque.enqueue(EbookUploader, @ebook.id, ENV['PUSHER_APP_ID'], ENV['PUSHER_KEY'], ENV['PUSHER_SECRET'])
         redirect_to ebook_path(@ebook)
     else
         render "create"

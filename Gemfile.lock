@@ -31,6 +31,11 @@ GEM
     arel (5.0.1.20140414130214)
     autoprefixer-rails (3.0.1.20140826)
       execjs
+    aws-sdk (1.52.0)
+      aws-sdk-v1 (= 1.52.0)
+    aws-sdk-v1 (1.52.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
     builder (3.2.2)
@@ -192,6 +197,7 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails
+  aws-sdk
   bootstrap-sass (~> 3.2.0)
   carrierwave (~> 0.9)
   coffee-rails (~> 4.0.0)

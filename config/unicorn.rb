@@ -5,8 +5,10 @@ preload_app true
 @resque_pid = nil
 
 before_fork do |server, worker|
-  @resque_pid ||= spawn("bundle exec rake " + \
-  "resque:work QUEUES=*")
+  if !Rails.env.development?
+    @resque_pid ||= spawn("bundle exec rake " + \
+    "resque:work QUEUES=*")
+  end
 
   Signal.trap 'TERM' do
     puts 'Unicorn master intercepting TERM and sending myself QUIT instead'

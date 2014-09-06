@@ -59,3 +59,5 @@ gem 'omniauth-facebook', '1.4.0'
 gem 'redis'
 gem 'resque', :require => "resque/server"
 gem 'pusher'
+
+gem 'aws-sdk'

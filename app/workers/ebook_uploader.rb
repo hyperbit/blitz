@@ -13,7 +13,7 @@ class EbookUploader
 
 		ebook = Ebook.find(ebook_id)
 		book = EPUB::Parser.parse(ebook.attachment.path)
-		destination = "public/uploads/ebooks/#{ebook.title}"
+		destination = "public/uploads/ebooks/#{ebook.title.tr(' ', '_')}"
 		total = unzip(ebook.attachment.path, destination, book.each_page_on_spine.count.to_f, pusher_app_id, pusher_key, pusher_secret)
 		num = total - book.each_page_on_spine.count.to_f
 
@@ -30,6 +30,8 @@ class EbookUploader
     		Pusher.trigger('ebook-uploader', 'ebook-percent', {:message => percent})
     	end
     	Pusher.trigger('ebook-uploader', 'ebook-percent', {:message => "done"})
+        FileUtils.rm_rf(destination)
+        ebook.remove_attachment!
 	end
 
 	def self.unzip (file, destination, num_pages, pusher_app_id, pusher_key, pusher_secret)

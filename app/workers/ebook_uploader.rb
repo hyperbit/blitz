@@ -8,6 +8,9 @@ class EbookUploader
 		Pusher.secret = pusher_secret
 		Pusher.trigger('ebook-uploader', 'ebook-percent', {:message => "0"})
 
+		s3 = AWS::S3.new
+		bucket_name = ENV['S3_BUCKET_NAME']
+
 		ebook = Ebook.find(ebook_id)
 		book = EPUB::Parser.parse(ebook.attachment.path)
 		destination = "public/uploads/ebooks/#{ebook.title}"
@@ -18,10 +21,9 @@ class EbookUploader
 	        doc = Nokogiri::HTML(pg.read.squish.force_encoding('UTF-8'))
 	        body = doc.xpath('//body')
 	        path = File.join(destination, pg.entry_name)
-	        path.slice! "public/"
     		p = {}
     		p[:content] = body.to_s
-        	p[:path] = path
+        	p[:path] = s3.buckets[bucket_name].objects[path].public_url.to_s
     		page = ebook.pages.create(p)
     		num += 1.0
     		percent = ((num/total) * 100).to_i.to_s
@@ -40,10 +42,7 @@ class EbookUploader
 
 		num = 0.0
 		Zip::Archive.open(file) do |ar|
-			puts "**************"
 			total = (ar.num_files + num_pages).to_f
-			puts total
-			puts "**************"
 			ar.each do |zf|
 		    	f_path = File.join(destination, zf.name)
 			    if zf.directory?

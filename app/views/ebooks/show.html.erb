@@ -21,6 +21,15 @@
 		}
 	});
 <% end %>
+<% if @page %>
+	<%= javascript_tag do %>
+		var url = window.location.href;
+		if (url.indexOf('?') == -1){  
+			url += '?page=<%= @page %>';
+			window.location.href = url;
+		}
+	<% end %>
+<% end %>
 <div id="paginate" class="row" align="middle" data-toggle="tooltip" data-placement="top" title="Browse through different pages!">
 	<%= will_paginate @pages, renderer: BootstrapPagination::Rails %>
 </div>

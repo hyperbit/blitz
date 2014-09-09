@@ -3,11 +3,11 @@ Blitz
 
 An online eBook (.epub) reader, PoweredbySpritz™.
 
-![Alt text](http://ezpub.herokuapp.com/assets/screenshot1-ee0466f2fbda80144381a8bb6a32065f.jpg)
+![Alt text](http://read-blitz.herokuapp.com/assets/screenshot1-ee0466f2fbda80144381a8bb6a32065f.jpg)
 
 # Overview
 
-![Alt text](http://ezpub.herokuapp.com/assets/screenshot2-a98c8e607027032b1b814dfa526647be.jpg)
+![Alt text](http://read-blitz.herokuapp.com/assets/screenshot2-a98c8e607027032b1b814dfa526647be.jpg)
 
 Blitz allows users to upload eBook (.epub) files to be read with Spritz reading technology. The uploaded file contents are parsed and rendered into plain text (left side of screenshot). It is also unzipped and (temporarily) saved to disk to be able to display the actual eBook into view (right side of screenshot). The algorithm is as follows:
 

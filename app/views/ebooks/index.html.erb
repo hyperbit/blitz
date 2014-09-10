@@ -4,7 +4,7 @@
   </div>
 <% end %>
 <br />
-<%= link_to "New Ebook", new_ebook_path, class: "btn btn-primary" %>
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Upload eBook &raquo;</button>
 <br />
 <br />
 <table class="table table-bordered table-striped">
@@ -16,7 +16,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @ebook.each do |ebook| %>
+    <% @ebooks.each do |ebook| %>
       <tr>
         <td><%= ebook.title %></td>
         <td><%= link_to "View Ebook", ebook_path(ebook) %></td>
@@ -25,3 +25,30 @@
     <% end %>
   </tbody>
 </table>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Select an eBook to read with Spritz</h4>
+      </div>
+      <div class="modal-body">
+        <p style="color:#D95352;" align="middle">
+          <strong>25 MB limit.</strong> Only .epub files allowed. Files deleted regularly.
+          <br/>
+          Because eBooks are fairly large in size (>5 MB), it might take a while to upload and render. In addition, if your internet connection is slow, the app might timeout. Please be patient, I am working on a method to do this file processing in the background.
+        </p>
+        <%= form_for @ebook, html: { multipart: true } do |f| %>
+          <%= f.file_field :attachment %>
+          <%= f.submit "Upload", class: "btn btn-primary" %>
+        <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+</div>

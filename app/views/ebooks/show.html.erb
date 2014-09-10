@@ -21,11 +21,11 @@
 		}
 	});
 <% end %>
-<% if @page %>
+<% if @bookmark %>
 	<%= javascript_tag do %>
 		var url = window.location.href;
 		if (url.indexOf('?') == -1){  
-			url += '?page=<%= @page %>';
+			url += '?page=<%= @bookmark %>';
 			window.location.href = url;
 		}
 	<% end %>
@@ -34,10 +34,6 @@
 	<div class="col-md-6">
 		<%= link_to raw("<i class='fa fa-arrow-circle-o-left'></i>
  Back"), ebooks_path, class: "btn btn-primary" %>
-	</div>
-	<div class="col-md-6" align="right">
-		<%= link_to raw("Bookmark <i class='fa fa-bookmark-o'></i>
-"), ebooks_path, class: "btn btn-danger" %>
 	</div>
 </div>
 <div id="paginate" class="row" align="middle" data-toggle="tooltip" data-placement="top" title="Browse through different pages!">

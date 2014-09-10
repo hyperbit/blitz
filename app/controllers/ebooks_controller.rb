@@ -30,10 +30,22 @@ class EbooksController < ApplicationController
   end
 
   def destroy
-    dir = "public/uploads/ebooks"
-    FileUtils.rm_rf(dir)
-    Ebook.delete_all
-  	redirect_to ebooks_path, notice: "Ebook deleted!"
+    #dir = "public/uploads/ebooks"
+    #FileUtils.rm_rf(dir)
+    #Ebook.delete_all
+  	#redirect_to ebooks_path, notice: "Ebook deleted!"
+
+    @current_user = current_user
+    @ebook = Ebook.find(params[:id])
+    dir = "public/uploads/ebooks/#{@ebook.user.name.to_s.tr(' ', '_')}/#{@ebook.title.tr(' ', '_')}"
+
+    s3 = AWS::S3.new
+    bucket_name = ENV['S3_BUCKET_NAME']
+    s3.buckets[bucket_name].objects.with_prefix(dir).delete_all # delete directory contents
+    s3.buckets[bucket_name].objects.delete(dir) # delete directory
+
+    @ebook.destroy
+    redirect_to ebooks_path, notice: "#{@ebook.title} deleted!"
   end
 
   def about

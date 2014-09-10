@@ -13,7 +13,7 @@ class EbookUploader
 
 		ebook = Ebook.find(ebook_id)
 		book = EPUB::Parser.parse(ebook.attachment.path)
-		destination = "public/uploads/ebooks/#{ebook.title.tr(' ', '_')}"
+		destination = "public/uploads/ebooks/#{ebook.user.name.to_s.tr(' ', '_')}/#{ebook.title.tr(' ', '_')}"
 		total = unzip(ebook.attachment.path, destination, book.each_page_on_spine.count.to_f, pusher_app_id, pusher_key, pusher_secret)
 		num = total - book.each_page_on_spine.count.to_f
 

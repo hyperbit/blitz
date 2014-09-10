@@ -19,9 +19,12 @@ ActiveRecord::Schema.define(version: 20140910005849) do
   create_table "ebooks", force: true do |t|
     t.string   "title"
     t.string   "attachment"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "ebooks", ["user_id"], name: "index_ebooks_on_user_id", using: :btree
 
   create_table "pages", force: true do |t|
     t.text     "content"

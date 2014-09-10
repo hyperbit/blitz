@@ -1,6 +1,11 @@
 class EbooksController < ApplicationController
   def index
-    @ebooks = Ebook.all
+    if current_user
+      @ebooks = current_user.ebooks
+      @title = "Home"
+    else
+      redirect_to root_path
+    end
     @ebook = Ebook.new
   end
 
@@ -15,10 +20,11 @@ class EbooksController < ApplicationController
   end
 
   def create
+    @current_user = current_user
     title = EPUB::Parser.parse(params[:ebook][:attachment].path).metadata.title
 
     params[:ebook][:title] = title
-  	@ebook = Ebook.new(ebook_params)
+  	@ebook = @current_user.ebooks.create(ebook_params)
     if @ebook.save
         Resque.enqueue(EbookUploader, @ebook.id, ENV['PUSHER_APP_ID'], ENV['PUSHER_KEY'], ENV['PUSHER_SECRET'])
         redirect_to ebook_path(@ebook)

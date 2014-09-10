@@ -44,7 +44,7 @@ class EbooksController < ApplicationController
     s3.buckets[bucket_name].objects.delete(dir) # delete directory
 
     @ebook.destroy
-    redirect_to ebooks_path, notice: "#{@ebook.title} deleted!"
+    redirect_to ebooks_path, notice: "'#{@ebook.title}' deleted!"
   end
 
   def about

@@ -14,8 +14,6 @@ class EbooksController < ApplicationController
     @pages = @ebook.pages.order("created_at ASC").paginate(:page => params[:page], :per_page => 1)
     if params[:page]
       @ebook.update_attribute(:bookmark, params[:page])
-    else
-      @ebook.update_attribute(:bookmark, 1)
     end
     @bookmark = @ebook.bookmark
     render 'show'

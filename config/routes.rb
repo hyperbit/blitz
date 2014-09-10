@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get 'about' => 'ebooks#about', :as => 'about'
   get 'contact' => 'ebooks#contact', :as => 'contact'
+  get 'bookmark' => 'ebooks#bookmark', :as => 'bookmark'
+
 
 	match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
 	match 'auth/failure', to: redirect('/'), via: [:get, :post]

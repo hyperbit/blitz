@@ -21,7 +21,21 @@
 		}
 	});
 <% end %>
-<%= link_to "Back", ebooks_path, class: "btn btn-primary" %>
+<% if @bookmark %>
+	<%= javascript_tag do %>
+		var url = window.location.href;
+		if (url.indexOf('?') == -1){  
+			url += '?page=<%= @bookmark %>';
+			window.location.href = url;
+		}
+	<% end %>
+<% end %>
+<div class="row">
+	<div class="col-md-6">
+		<%= link_to raw("<i class='fa fa-arrow-circle-o-left'></i>
+ Back"), ebooks_path, class: "btn btn-primary" %>
+	</div>
+</div>
 <div id="paginate" class="row" align="middle" data-toggle="tooltip" data-placement="top" title="Browse through different pages!">
 	<%= will_paginate @pages, renderer: BootstrapPagination::Rails %>
 </div>

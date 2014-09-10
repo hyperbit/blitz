@@ -5,5 +5,4 @@ class Ebook < ActiveRecord::Base
 	validates :title, presence: true
 	validates :attachment, presence: true,
 		:file_size => { :maximum => 25.megabytes.to_i }
-	attr_accessible :user
 end

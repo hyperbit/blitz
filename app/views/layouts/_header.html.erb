@@ -43,6 +43,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
+        <% if current_user %>
+          <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
+        <% end %>
         <li><%= link_to "Upload", new_ebook_path %></li>
         <li<% if @title == "About" %> class="active" <% end %>><%= link_to "About", about_path %></li>
         <li<% if @title == "Contact" %> class="active" <% end %>><%= link_to "Contact", contact_path %></li>

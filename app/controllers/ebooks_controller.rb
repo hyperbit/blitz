@@ -12,6 +12,10 @@ class EbooksController < ApplicationController
   def show
     @ebook = Ebook.find(params[:id])
     @pages = @ebook.pages.order("created_at ASC").paginate(:page => params[:page], :per_page => 1)
+    if params[:page]
+      @ebook.update_attribute(:bookmark, params[:page])
+    end
+    @bookmark = @ebook.bookmark
     render 'show'
   end
 
@@ -30,11 +34,6 @@ class EbooksController < ApplicationController
   end
 
   def destroy
-    #dir = "public/uploads/ebooks"
-    #FileUtils.rm_rf(dir)
-    #Ebook.delete_all
-  	#redirect_to ebooks_path, notice: "Ebook deleted!"
-
     @current_user = current_user
     @ebook = Ebook.find(params[:id])
     dir = "public/uploads/ebooks/#{@ebook.user.name.to_s.tr(' ', '_')}/#{@ebook.title.tr(' ', '_')}"

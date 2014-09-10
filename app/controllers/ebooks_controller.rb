@@ -1,6 +1,12 @@
 class EbooksController < ApplicationController
   def index
-    @ebook = Ebook.all
+    if current_user
+      @ebooks = current_user.ebooks
+      @title = "Home"
+    else
+      redirect_to root_path
+    end
+    @ebook = Ebook.new
   end
 
   def show
@@ -9,15 +15,12 @@ class EbooksController < ApplicationController
     render 'show'
   end
 
-  def new
-  	@ebook = Ebook.new
-  end
-
   def create
+    @current_user = current_user
     title = EPUB::Parser.parse(params[:ebook][:attachment].path).metadata.title
 
     params[:ebook][:title] = title
-  	@ebook = Ebook.new(ebook_params)
+  	@ebook = @current_user.ebooks.create(ebook_params)
     if @ebook.save
         Resque.enqueue(EbookUploader, @ebook.id, ENV['PUSHER_APP_ID'], ENV['PUSHER_KEY'], ENV['PUSHER_SECRET'])
         redirect_to ebook_path(@ebook)
@@ -27,10 +30,22 @@ class EbooksController < ApplicationController
   end
 
   def destroy
-    dir = "public/uploads/ebooks"
-    FileUtils.rm_rf(dir)
-    Ebook.delete_all
-  	redirect_to ebooks_path, notice: "Ebook deleted!"
+    #dir = "public/uploads/ebooks"
+    #FileUtils.rm_rf(dir)
+    #Ebook.delete_all
+  	#redirect_to ebooks_path, notice: "Ebook deleted!"
+
+    @current_user = current_user
+    @ebook = Ebook.find(params[:id])
+    dir = "public/uploads/ebooks/#{@ebook.user.name.to_s.tr(' ', '_')}/#{@ebook.title.tr(' ', '_')}"
+
+    s3 = AWS::S3.new
+    bucket_name = ENV['S3_BUCKET_NAME']
+    s3.buckets[bucket_name].objects.with_prefix(dir).delete_all # delete directory contents
+    s3.buckets[bucket_name].objects.delete(dir) # delete directory
+
+    @ebook.destroy
+    redirect_to ebooks_path, notice: "#{@ebook.title} deleted!"
   end
 
   def about

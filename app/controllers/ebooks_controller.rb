@@ -15,10 +15,6 @@ class EbooksController < ApplicationController
     render 'show'
   end
 
-  def new
-  	@ebook = Ebook.new
-  end
-
   def create
     @current_user = current_user
     title = EPUB::Parser.parse(params[:ebook][:attachment].path).metadata.title

@@ -1,74 +1,40 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+  <h1>Blitz <small>PoweredbySpritz™</small></h1>
+  <p>Blitz (formally EZPub) is an online tool designed to help you read your eBooks faster, easier, and more effectively by using the power of <strong><a href="http://www.spritzinc.com/">Spritz</a></strong>.</p>
+  <p>
+    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in", class: "btn btn-primary btn-lg" %>
+    <br />
+    <a id="why" data-toggle="tooltip" data-placement="top" title="We use Facebook Authentication as a simple way to keep track of the books you upload." style="font-size:0.5em;">why?</a>
+  </p>
+</div>
 
-    <title>EZPub</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="cover/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="cover/cover.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="cover/ie-emulation-modes-warning.js"></script>
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="cover/ie10-viewport-bug-workaround.js"></script>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  <style type="text/css" id="holderjs-style"></style></head>
-
-  <body>
-
-    <div class="site-wrapper">
-
-      <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-          <div class="inner cover">
-            <h1 class="cover-heading">EZPub<br/><h3>PoweredbySpritz™</h3></h1>
-            <p class="lead">EZPub is an web browser platform that allows you to upload .epub files to be read with Spritz reading technology</p>
-            <p class="lead">
-              <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in", class: "btn btn-lg btn-default" %>
-              <br />
-              <a id="why" data-toggle="tooltip" data-placement="top" title="We use Facebook Authentication as a simple way to keep track of the books you upload." style="font-size:0.5em;">why?</a>
-            </p>
-          </div>
-
-          <div class="mastfoot">
-            <div class="inner">
-              <p>Fork on <a href="https://github.com/hyperbit/ezpub">GitHub</a>, by <a href="https://github.com/hyperbit">hyperbit</a>.</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
+<div class="row">
+  <div align="middle">
+    <div class="well">
+      <div class="fb-like" data-href="https://read-blitz.herokuapp.com/" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
     </div>
+  </div>
+</div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="cover/jquery.js"></script>
-    <script src="cover/bootstrap.js"></script>
-    <script src="cover/docs.js"></script>
-    <script>
-      $('#why').tooltip()
-    </script>
-  
+<hr>
 
-</body></html>
+<div>
+  <h1>Screenshots</h1>
+  <br />
+  <h2>Book Cover</h2>
+  <br />
+  <div align="middle">
+    <%= image_tag("screenshot1.jpg", :alt => "Front Page", :width => "75%") %>
+  </div>
+  <br />
+  <h2>Spritz'ing eBook Content</h2>
+  <div align="middle">
+    <%= image_tag("screenshot2.jpg", :alt => "Spritz", :width => "75%") %>
+  </div>
+  <em>Book: <strong>The Next America</strong> by Paul Taylor</em>
+</div>
+
+<script>
+  $('#why').tooltip()
+</script>

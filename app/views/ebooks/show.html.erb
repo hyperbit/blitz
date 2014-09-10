@@ -17,12 +17,20 @@
 			$('.progress').show()
 			$('.progress-bar').css("width", data.message + "%");
 		} else {
-			location.reload();
+			window.location = window.location + '#loaded';
+        	window.location.reload();
 		}
 	});
+
+	window.onload = function() {
+	    if(window.location.hash) {
+	        pusher.disconnect();
+	    }
+	}
 <% end %>
 <% if @bookmark %>
 	<%= javascript_tag do %>
+		pusher.disconnect();
 		var url = window.location.href;
 		if (url.indexOf('?') == -1){  
 			url += '?page=<%= @bookmark %>';

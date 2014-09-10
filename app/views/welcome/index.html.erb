@@ -3,7 +3,8 @@
   <h1>Blitz <small>PoweredbySpritz™</small></h1>
   <p>Blitz (formally EZPub) is an online tool designed to help you read your eBooks faster, easier, and more effectively by using the power of <strong><a href="http://www.spritzinc.com/">Spritz</a></strong>.</p>
   <p>
-    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in", class: "btn btn-primary btn-lg" %>
+    <%= link_to raw("<i class='fa fa-facebook'></i>
+ | Sign in with Facebook"), "/auth/facebook", id: "sign_in", class: "btn btn-primary btn-lg" %>
     <br />
     <a id="why" data-toggle="tooltip" data-placement="top" title="We use Facebook Authentication as a simple way to keep track of the books you upload." style="font-size:0.5em;">why?</a>
   </p>

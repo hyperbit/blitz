@@ -16,12 +16,14 @@
     </tr>
   </thead>
   <tbody>
-    <% @ebooks.each do |ebook| %>
-      <tr>
-        <td><%= ebook.title %></td>
-        <td><%= link_to "View Ebook", ebook_path(ebook) %></td>
-        <td><%= button_to "Delete",  ebook, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{ebook.title}?" %></td>
-      </tr>
+    <% if @ebooks %>
+      <% @ebooks.each do |ebook| %>
+        <tr>
+          <td><%= ebook.title %></td>
+          <td><%= link_to "View Ebook", ebook_path(ebook) %></td>
+          <td><%= button_to "Delete",  ebook, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{ebook.title}?" %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

@@ -27,7 +27,7 @@ Seems like overkill, but each technology does their own part to ultimately rende
 2. Link multiple social network accounts to one user (e.g. Google+, Twtitter, etc.)
 3. Book recommendations (from Facebook friends, Amazon products)
 4. Force encoding of eBook preview to UTF-8. Currently, eBook files are being uploaded to AWS S3 and is previewed using an HTML **iframe** object. Is there a way to read these files in UTF-8?
-5. Handle upload errors
+5. Handle upload errors (some eBooks won't upload....)
 
 # Contributions
 

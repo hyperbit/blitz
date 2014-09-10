@@ -5,10 +5,5 @@ class Ebook < ActiveRecord::Base
 	validates :title, presence: true
 	validates :attachment, presence: true,
 		:file_size => { :maximum => 25.megabytes.to_i }
-
-	def self.destroy_ebooks
-		dir = "public/uploads/ebooks"
-		FileUtils.rm_rf(dir)
-		Ebook.delete_all
-	end
+	attr_accessible :user
 end
